@@ -7,8 +7,7 @@ bot.remove_command('help')
 c = HTTPClient()
 @bot.event
 async def on_ready():
-	print(f"[ 1 ]: Logged in as: {bot.user}")
-	print(f"[ 2 ]: ID: {bot.user.id}\n [ 3 ]: Prefix: ;")
+	print(f"[ 1 ]: Logged in as: {bot.user}\n[ 2 ]: ID: {bot.user.id}\n[ 3 ]: Prefix: ;")
 	await bot.change_presence(status=discord.Status.idle, activity=discord.Activity(type=discord.ActivityType.watching, name="https://github.com/vck5"))
 
 @bot.command(aliases=['lesbiangay','lesbianrate'])
