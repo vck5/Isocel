@@ -1,4 +1,4 @@
-import discord, aiosonic, random, pyjokes, randfacts, json, asyncio
+import discord, random, pyjokes, randfacts, json, asyncio
 from discord.ext import commands 
 from googletrans import Translator
 from aiosonic import HTTPClient
@@ -8,7 +8,7 @@ c = HTTPClient()
 @bot.event
 async def on_ready():
 	print(f"[ 1 ]: Logged in as: {bot.user}")
-	print(f"[ 2 ]: ID: {bot.user.id}")
+	print(f"[ 2 ]: ID: {bot.user.id}\n [ 3 ]: Prefix: ;")
 	await bot.change_presence(status=discord.Status.idle, activity=discord.Activity(type=discord.ActivityType.watching, name="https://github.com/vck5"))
 
 @bot.command(aliases=['lesbiangay','lesbianrate'])
@@ -37,7 +37,7 @@ async def say(ctx, *, args: str = None):
 		await ctx.send(f"``` {{ + Error + }} : {e}")
 		
 @bot.command(aliases=['howgay','gayrate'])
-async def gay (ctx, m: discord.Member = None):
+async def gay(ctx, m: discord.Member = None):
 	m = m or ctx.author
 	
 	g = random.randint(1,500)
@@ -46,7 +46,7 @@ async def gay (ctx, m: discord.Member = None):
 	await ctx.send(embed=embed)
 
 @bot.command()
-async def joke (ctx):
+async def joke(ctx):
 	try:
 		joke = pyjokes.get_joke()
 		embed = discord.Embed(description=joke, color=discord.Color.random())
@@ -57,7 +57,7 @@ async def joke (ctx):
 		await ctx.send(f"``` {{ + Error + }} : {e} ```")
 
 @bot.command()
-async def cringe (ctx, m: discord.Member = None):
+async def cringe(ctx, m: discord.Member = None):
   if m is None:
     embed=discord.Embed(description=f"{ctx.author.mention}: *Considers everyone in the chat* **cringe**!", color=0xA4C4FF)
     embed.set_image(url="https://i.waifu.pics/gkB-aJ2.jpg")
@@ -74,7 +74,7 @@ async def eightball(ctx, ques: str):
   await ctx.send(embed=discord.Embed(title="The Magical Eightball Says: ", description=f"{ctx.author.mention}: {r}", color=discord.Color.random()))
 
 @bot.command(aliases=["av"])
-async def avatar (ctx, m: discord.Member = None):
+async def avatar(ctx, m: discord.Member = None):
 	m = m or ctx.author
 	
 	embed = discord.Embed(description=f"{m.mention}'s **Avatar**", color=discord.Color.random())
@@ -82,7 +82,7 @@ async def avatar (ctx, m: discord.Member = None):
 	await ctx.send(embed=embed)
 
 @bot.command(aliases=["randfact","randomfacts","fact"])
-async def facts (ctx):
+async def facts(ctx):
 	try:
 		f = randfacts.get_fact(True)
 		embed = discord.Embed(title="Did you know?", color=discord.Color.random())
@@ -93,7 +93,7 @@ async def facts (ctx):
 		await ctx.send(embed=discord.Embed(description=f"``` {{ + Error + }} : {e} ```", color=0x000001), delete_after=25)
 
 @bot.command ()
-async def translate (ctx, lang, *,arg):
+async def translate(ctx, lang, *,arg):
 	try:
 		async with ctx.typing():
 			t = Translator()
@@ -138,11 +138,10 @@ async def ping(ctx):
 		await ctx.send(embed=discord.Embed(description=f"{{ + Error + }} : {e}.", color=discord.Color.random()))
 
 @bot.command (aliases=["fakehack","fhack"])
-async def hack (ctx, member: discord.Member = None):
+async def hack(ctx, member: discord.Member = None):
 	if member is None:
 		member = ctx.author
 		
-	async with ctx.typing():
 		city = ["Delhi","Patna","New York","Istanbul","Gaya","Islamabad","Lahore","Rome","Moscow","Jakarta","Jaipur","Pune","Mumbai","Purnea","Kabul"]
 		vpn = ["True","False"]
 		proxy = ["True","False"]
@@ -219,7 +218,7 @@ async def advice(ctx):
 			a = await r.json()
 			advice = a['slip']['advice']
 			
-			embed = discord.Embed(title="{{ + Advice + }}", description=a, color=discord.Color.random())
+			embed = discord.Embed(title="{{ + Advice + }}", description=advice, color=discord.Color.random())
 			await ctx.send(embed=embed)
 	except Exception as e:
 		await ctx.send(f"``` {{ + Error }} : {e}```")
