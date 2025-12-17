@@ -3,6 +3,7 @@
 
 ## - 
 
-## Installation -
-*-* ``` git clone https://github.com/vck5/Isocel.git 
-cd Isocel```
+## Installation
+``` git clone https://github.com/vck5/Isocel.git ```
+
+``` cd Isocel```
